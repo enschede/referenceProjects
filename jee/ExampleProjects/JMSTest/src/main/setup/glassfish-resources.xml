@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <admin-object-resource enabled="true" jndi-name="jms/q1"  res-type="javax.jms.Queue"  res-adapter="jmsra">
+        <property name="Name" value="PhysicalQueue"/>
+    </admin-object-resource>
+    <connector-connection-pool name="jms/q1FactoryPool"  connection-definition-name="javax.jms.QueueConnectionFactory"  resource-adapter-name="jmsra"/>
+    <connector-resource enabled="true" jndi-name="jms/q1Factory" pool-name="jms/q1FactoryPool"  />
+    <admin-object-resource enabled="true" jndi-name="jms/q2"  res-type="javax.jms.Queue"  res-adapter="jmsra">
+        <property name="Name" value="PhysicalQueue"/>
+    </admin-object-resource>
+    <connector-connection-pool name="jms/q2FactoryPool"  connection-definition-name="javax.jms.QueueConnectionFactory"  resource-adapter-name="jmsra"/>
+    <connector-resource enabled="true" jndi-name="jms/q2Factory" pool-name="jms/q2FactoryPool"  />
+    <admin-object-resource enabled="true" jndi-name="jms/t1"  res-type="javax.jms.Topic"  res-adapter="jmsra">
+        <property name="Name" value="PhysicalTopic"/>
+    </admin-object-resource>
+    <connector-connection-pool name="jms/t1FactoryPool"  connection-definition-name="javax.jms.TopicConnectionFactory"  resource-adapter-name="jmsra"/>
+    <connector-resource enabled="true" jndi-name="jms/t1Factory" pool-name="jms/t1FactoryPool"  />
+    <admin-object-resource enabled="true" jndi-name="jms/t1"  res-type="javax.jms.Topic"  res-adapter="jmsra">
+        <property name="Name" value="PhysicalTopic"/>
+    </admin-object-resource>
+    <connector-connection-pool name="jms/t1FactoryPool"  connection-definition-name="javax.jms.TopicConnectionFactory"  resource-adapter-name="jmsra"/>
+    <connector-resource enabled="true" jndi-name="jms/t1Factory" pool-name="jms/t1FactoryPool"  />
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glassfish-ejb-jar PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 EJB 3.1//EN" "http://glassfish.org/dtds/glassfish-ejb-jar_3_1-1.dtd">
+<glassfish-ejb-jar>
+  <enterprise-beans>
+    <ejb>
+      <ejb-name>QueueBean1</ejb-name>
+      <jndi-name>jms/q2</jndi-name>
+      <mdb-connection-factory>
+        <jndi-name>jms/q2Factory</jndi-name>
+      </mdb-connection-factory>
+    </ejb>
+    <ejb>
+      <ejb-name>Creator</ejb-name>
+      <resource-ref>
+        <res-ref-name>jms/q1Factory</res-ref-name>
+        <jndi-name>jms/q1Factory</jndi-name>
+      </resource-ref>
+      <resource-ref>
+        <res-ref-name>jms/t1Factory</res-ref-name>
+        <jndi-name>jms/t1Factory</jndi-name>
+      </resource-ref>
+      <message-destination-ref>
+        <message-destination-ref-name>jms/q1</message-destination-ref-name>
+        <jndi-name>jms/q1</jndi-name>
+      </message-destination-ref>
+      <message-destination-ref>
+        <message-destination-ref-name>jms/t1</message-destination-ref-name>
+        <jndi-name>jms/t1</jndi-name>
+      </message-destination-ref>
+    </ejb>
+    <message-destination>
+      <jndi-name>jms/q2</jndi-name>
+    </message-destination>
+  </enterprise-beans>
+</glassfish-ejb-jar>

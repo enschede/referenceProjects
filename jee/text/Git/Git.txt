@@ -1,0 +1,9 @@
+Git
+
+
+Quick commands
+git —bare init <directory>   richt directory in als repository zonder lokale checkout mogelijkheid.
+git init <directory>         richt directory in als repository met lokale checkout mogelijkheid.
+
+Meer info, zie Youtube playlist Git
+

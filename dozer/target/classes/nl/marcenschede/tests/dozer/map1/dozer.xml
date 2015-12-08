@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          
+  <mapping>
+    <class-a>nl.marcenschede.tests.dozer.Persoon</class-a>
+    <class-b>java.util.Map</class-b>
+    
+    <field>
+      <a>naam</a>
+      <b>props</b>
+    </field>
+    <field-exclude>
+      <a>plaats</a>
+      <b>plaats</b>
+    </field-exclude>
+  </mapping> 
+  
+
+</mappings> 

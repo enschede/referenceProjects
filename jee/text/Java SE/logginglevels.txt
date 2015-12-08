@@ -1,0 +1,16 @@
+Logging levels
+
+
+Common-	Java-
+Logging	Logging
+
+		OFF
+Fatal	SEVERE		Event that severely effects all processes (system fails, technical failure)
+Error	WARNING		Event that severely effects one process (process fails, technical failure)
+					Event that inseverely effects of process (process exception, customer care unit information)
+Warn	INFO		System events (startup, etc.)
+Info	CONFIG		Configuration event information
+Debug	FINE		Programmer info - odd program behaviour
+Trace	FINER		Programmer info - trace
+		FINEST		Programmer info - what happens in the code
+		ALL

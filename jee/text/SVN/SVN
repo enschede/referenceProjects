@@ -1,0 +1,41 @@
+=== Installatie SVN server op Snow Leopard: ===
+
+Toevoegen aan /etc/apache2/httpd.conf
+ LoadModule dav_svn_module    
+ libexec/apache2/mod_dav_svn.so
+
+Toevoegen aan /etc/apache2/users/marc.conf:
+ <Location /svn>
+  DAV svn
+  SVNPath /Users/marc/svn
+ </Location>
+
+=== SVN op Mac ===
+Versions
+svnX:
+	Maak gebruik van svn in /usr/bin
+SmartSVN:
+	Doet Add en Delete automatisch
+
+=== SVN Administration ===
+svnadmin dump SqillsSVN.Novamedia/ 
+svndumpfilter --drop-empty-revs --renumber-revs include /Customers/S3 (of exclude)
+svnadmin load SqillsSVN.Novamedia/ 
+
+Zorg dat de hoogste te importeren directory al bestaat in de nieuwe repository, dus /Customers. (Want, de creatie revision van /Customers is niet meegenomen in het filter)
+
+=== Gebruikte locaties ===
+
+https://euroaccounts.svn.sourceforge.net/svnroot/euroaccounts 
+https://workflowservices.googlecode.com/svn/trunk/
+
+=== Commando's op commandline ===
+svn import (import initieel)
+svn co (checkout initieel)
+svn up (update)
+svn ci (commit)
+
+=== Default opbouw van een SVN structuur ===
+<root>/trunk/<module>
+<root>/<project>/trunk/<module>
+

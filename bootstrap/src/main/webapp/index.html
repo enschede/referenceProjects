@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <title>Bootstrap 3</title>
+  <!-- Viewport maakt auto sizing mogelijk, anders default = 720p breed -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="margin-top: 50pt">
+
+<!-- Header -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <!--Sitename-->
+    <a href="index.html" class="navbar-brand">Bootstrap test</a>
+
+    <!--Drop down menu on mobile-->
+    <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <div class="collapse navbar-collapse navHeaderCollapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tests <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="style.html">Style tests</a></li>
+            <li><a href="fixedfooter.html">Fixex footer</a></li>
+            <li><a href="rowsAndCols.html">Rows and Cols</a></li>
+            <li><a href="panels.html">Panels</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">No caret</a>
+          <ul class="dropdown-menu">
+            <li><a href="style.html">Style tests</a></li>
+          </ul>
+        </li>
+        <li><a href="style.html">Style</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="jumbotron">
+    <div style="text-align: center;">
+      <h1>Hello, World</h1>
+      <p>Deze pagina laat bootstrap headers en navigation zien.</p>
+    </div>
+  </div>
+</div>
+
+<!--Mandatory elements-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
