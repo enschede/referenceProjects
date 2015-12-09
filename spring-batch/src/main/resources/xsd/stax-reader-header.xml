@@ -1,0 +1,23 @@
+<v1:data xmlns:v1="http://schema.marcenschede.nl/schema/v1_0">
+  <v1:header>
+    <v1:account>UN123456</v1:account>
+  </v1:header>
+  <v1:itemlist>
+    <v1:item>
+      <v1:name>Item A</v1:name>
+      <v1:amount>1000.00</v1:amount>
+    </v1:item>
+    <v1:item>
+      <v1:name>Item B</v1:name>
+      <v1:amount>2000.00</v1:amount>
+    </v1:item>
+    <v1:item>
+      <v1:name>Item C</v1:name>
+      <v1:amount>3000.00</v1:amount>
+    </v1:item>
+  </v1:itemlist>
+  <v1:footer>
+    <v1:TotalAmount>6000.00</v1:TotalAmount>
+    <v1:NumberOfItems>3</v1:NumberOfItems>
+  </v1:footer>
+</v1:data>

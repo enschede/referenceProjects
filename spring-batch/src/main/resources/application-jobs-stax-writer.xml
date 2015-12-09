@@ -1,0 +1,42 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+  <job id="staxWriterJob" restartable="true">
+    <step id="staxStep1">
+      <tasklet allow-start-if-complete="true">
+        <chunk reader="countingReader" writer="staxWriter" chunk-completion-policy="completionPolicy"/>
+      </tasklet>
+    </step>
+  </job>
+
+  <!--scope="step" is van belang om de scope van het object af te bakenen, default is dit iets van global-->
+  <beans:bean id="countingReader" class="nl.marcenschede.springtest.stax.writer.CountingReader" scope="step"/>
+  <beans:bean id="staxWriter" class="org.springframework.batch.item.xml.StaxEventItemWriter">
+    <beans:property name="resource" value="file:target/output/users.xml" />
+    <beans:property name="encoding" value="ISO-8859-1" />
+    <beans:property name="version" value="1.0" />
+    <beans:property name="marshaller" ref="userXMLMarshaller" />
+    <beans:property name="headerCallback" ref="UserXMLHeaderCallBack" />
+    <beans:property name="footerCallback" ref="UserXMLFooterCallBack"/>
+    <beans:property name="rootTagName" value="Waarden" />
+  </beans:bean>
+
+  <beans:bean id="userXMLMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+    <beans:property name="classesToBeBound">
+      <beans:list>
+        <beans:value>nl.marcenschede.springtest.stax.writer.MyElement</beans:value>
+      </beans:list>
+    </beans:property>
+  </beans:bean>
+
+  <!--DefaultResultCompletionPolicy zorgt dat alle chunks ineens worden aangeboden bij de writer-->
+  <beans:bean id="completionPolicy" class="org.springframework.batch.repeat.policy.DefaultResultCompletionPolicy"/>
+  <beans:bean id="UserXMLHeaderCallBack" class="nl.marcenschede.springtest.stax.writer.UserXMLHeaderCallBack"/>
+  <beans:bean id="UserXMLFooterCallBack" class="nl.marcenschede.springtest.stax.writer.UserXMLFooterCallBack"/>
+</beans:beans>

@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>0574908765.2013-04-02</MsgId>
+      <CreDtTm>2013-04-12T10:55:08.66+02:00</CreDtTm>
+      <MsgPgntn>
+        <PgNb>1</PgNb>
+        <LastPgInd>true</LastPgInd>
+      </MsgPgntn>
+    </GrpHdr>
+    <Stmt>
+      <Id>0574908765.2013-04-02</Id>
+      <ElctrncSeqNb>0070</ElctrncSeqNb>
+      <CreDtTm>2013-04-12T10:55:08.66+02:00</CreDtTm>
+      <Acct>
+        <Id>
+          <IBAN>NL77ABNA0574908765</IBAN>
+        </Id>
+        <Ccy>EUR</Ccy>
+        <Svcr>
+          <FinInstnId>
+            <BIC>ABNANL2A</BIC>
+          </FinInstnId>
+        </Svcr>
+      </Acct>
+      <Bal>
+        <Tp>
+          <CdOrPrtry>
+            <Cd>PRCD</Cd>
+          </CdOrPrtry>
+        </Tp>
+        <Amt Ccy="EUR">1000.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt>
+          <Dt>2013-03-28</Dt>
+        </Dt>
+      </Bal>
+      <Bal>
+        <Tp>
+          <CdOrPrtry>
+            <Cd>CLBD</Cd>
+          </CdOrPrtry>
+        </Tp>
+        <Amt Ccy="EUR">1007.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt>
+          <Dt>2013-04-02</Dt>
+        </Dt>
+      </Bal>
+      <Bal>
+        <Tp>
+          <CdOrPrtry>
+            <Cd>CLAV</Cd>
+          </CdOrPrtry>
+        </Tp>
+        <Amt Ccy="EUR">1007.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt>
+          <Dt>2013-04-02</Dt>
+        </Dt>
+      </Bal>
+
+      <!-- Uitgaande SDD batch algemeen met details -->
+      <Ntry>
+        <Amt Ccy='EUR'>7.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts>BOOK</Sts>
+        <BookgDt>
+          <Dt>2012-04-02</Dt>
+        </BookgDt>
+        <ValDt>
+          <Dt>2012-04-02</Dt>
+        </ValDt>
+        <AcctSvcrRef>1402P5518750498B0AO</AcctSvcrRef>
+        <BkTxCd>
+          <Domn>
+            <Cd>PMNT</Cd>
+            <Fmly>
+              <Cd>IDDT</Cd>
+              <SubFmlyCd>ESDD</SubFmlyCd>
+            </Fmly>
+          </Domn>
+          <Prtry>
+            <Cd>N247</Cd>
+            <Issr>ABNAMRO</Issr>
+          </Prtry>
+        </BkTxCd>
+        <NtryDtls>
+          <Btch>
+            <MsgId>1402P5518750498B0AO</MsgId>
+            <NbOfTxs>7</NbOfTxs>
+            <TtlAmt Ccy='EUR'>7.00</TtlAmt>
+            <CdtDbtInd>CRDT</CdtDbtInd>
+          </Btch>
+          <TxDtls>
+            <Refs>
+              <AcctSvcrRef>1402P5518750498B0AO</AcctSvcrRef>
+              <PmtInfId>BATCHID</PmtInfId>
+              <EndToEndId>SDD SIT 024-1</EndToEndId>
+              <MndtId>mandateref24-1</MndtId>
+            </Refs>
+            <AmtDtls>
+              <TxAmt>
+                <Amt Ccy='EUR'>1.00</Amt>
+              </TxAmt>
+            </AmtDtls>
+            <BkTxCd>
+              <Domn>
+                <Cd>PMNT</Cd>
+                <Fmly>
+                  <Cd>IDDT</Cd>
+                  <SubFmlyCd>ESDD</SubFmlyCd>
+                </Fmly>
+              </Domn>
+              <Prtry>
+                <Cd>N247</Cd>
+                <Issr>ABNAMRO</Issr>
+              </Prtry>
+            </BkTxCd>
+            <RltdPties>
+              <Dbtr>
+                <Nm>R12 SDD SIT2</Nm>
+                <PstlAdr>
+                  <Ctry>NL</Ctry>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                </PstlAdr>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>NL27ABNA0562326340</IBAN>
+                </Id>
+              </DbtrAcct>
+            </RltdPties>
+            <RltdAgts>
+              <DbtrAgt>
+                <FinInstnId>
+                  <BIC>ABNANL2A</BIC>
+                </FinInstnId>
+              </DbtrAgt>
+            </RltdAgts>
+            <RmtInf>
+              <Ustrd>SIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI
+                NOSITSIT DRIVER LI NOSIT DRIVER LI NOSIT
+              </Ustrd>
+            </RmtInf>
+          </TxDtls>
+          <TxDtls>
+            <Refs>
+              <AcctSvcrRef>1202P5518750498B0A0</AcctSvcrRef>
+              <PmtInfId>BATCHID</PmtInfId>
+              <EndToEndId>SDD SIT 024-2</EndToEndId>
+              <MndtId>mandateref24-2</MndtId>
+            </Refs>
+            <AmtDtls>
+              <TxAmt>
+                <Amt Ccy='EUR'>1.00</Amt>
+              </TxAmt>
+            </AmtDtls>
+            <BkTxCd>
+              <Domn>
+                <Cd>PMNT</Cd>
+                <Fmly>
+                  <Cd>IDDT</Cd>
+                  <SubFmlyCd>ESDD</SubFmlyCd>
+                </Fmly>
+              </Domn>
+              <Prtry>
+                <Cd>N247</Cd>
+                <Issr>ABNAMRO</Issr>
+              </Prtry>
+            </BkTxCd>
+            <RltdPties>
+              <Dbtr>
+                <Nm>R12 SDD SIT2</Nm>
+                <PstlAdr>
+                  <Ctry>NL</Ctry>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                </PstlAdr>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>NL27ABNA0562326340</IBAN>
+                </Id>
+              </DbtrAcct>
+            </RltdPties>
+            <RltdAgts>
+              <DbtrAgt>
+                <FinInstnId>
+                  <BIC>ABNANL2A</BIC>
+                </FinInstnId>
+              </DbtrAgt>
+            </RltdAgts>
+            <RmtInf>
+              <Ustrd>SIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI
+                NOSITSIT DRIVER LI NOSIT DRIVER LI NOSIT
+              </Ustrd>
+            </RmtInf>
+          </TxDtls>
+          <TxDtls>
+            <Refs>
+              <AcctSvcrRef>1402P5518750498B0AO</AcctSvcrRef>
+              <PmtInfId>BATCHID</PmtInfId>
+              <EndToEndId>SDD SIT 024-3</EndToEndId>
+              <MndtId>mandateref24-3</MndtId>
+            </Refs>
+            <AmtDtls>
+              <TxAmt>
+                <Amt Ccy='EUR'>1.00</Amt>
+              </TxAmt>
+            </AmtDtls>
+            <BkTxCd>
+              <Domn>
+                <Cd>PMNT</Cd>
+                <Fmly>
+                  <Cd>IDDT</Cd>
+                  <SubFmlyCd>ESDD</SubFmlyCd>
+                </Fmly>
+              </Domn>
+              <Prtry>
+                <Cd>N247</Cd>
+                <Issr>ABNAMRO</Issr>
+              </Prtry>
+            </BkTxCd>
+            <RltdPties>
+              <Dbtr>
+                <Nm>R12 SDD SIT2</Nm>
+                <PstlAdr>
+                  <Ctry>NL</Ctry>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                </PstlAdr>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>NL27ABNA0562326340</IBAN>
+                </Id>
+              </DbtrAcct>
+            </RltdPties>
+            <RltdAgts>
+              <DbtrAgt>
+                <FinInstnId>
+                  <BIC>ABNANL2A</BIC>
+                </FinInstnId>
+              </DbtrAgt>
+            </RltdAgts>
+            <RmtInf>
+              <Ustrd>SIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI
+                NOSITSIT DRIVER LI NOSIT DRIVER LI NOSIT
+              </Ustrd>
+            </RmtInf>
+          </TxDtls>
+          <TxDtls>
+            <Refs>
+              <AcctSvcrRef>1402P5518750498B0AO</AcctSvcrRef>
+              <PmtInfId>BATCHID</PmtInfId>
+              <EndToEndId>SDD SIT 024-4</EndToEndId>
+              <MndtId>mandateref24-4</MndtId>
+            </Refs>
+            <AmtDtls>
+              <TxAmt>
+                <Amt Ccy='EUR'>1.00</Amt>
+              </TxAmt>
+            </AmtDtls>
+            <BkTxCd>
+              <Domn>
+                <Cd>PMNT</Cd>
+                <Fmly>
+                  <Cd>IDDT</Cd>
+                  <SubFmlyCd>ESDD</SubFmlyCd>
+                </Fmly>
+              </Domn>
+              <Prtry>
+                <Cd>N247</Cd>
+                <Issr>ABNAMRO</Issr>
+              </Prtry>
+            </BkTxCd>
+            <RltdPties>
+              <Dbtr>
+                <Nm>R12 SDD SIT2</Nm>
+                <PstlAdr>
+                  <Ctry>NL</Ctry>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                </PstlAdr>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>NL27ABNA0562326340</IBAN>
+                </Id>
+              </DbtrAcct>
+            </RltdPties>
+            <RltdAgts>
+              <DbtrAgt>
+                <FinInstnId>
+                  <BIC>ABNANL2A</BIC>
+                </FinInstnId>
+              </DbtrAgt>
+            </RltdAgts>
+            <RmtInf>
+              <Ustrd>SIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI
+                NOSITSIT DRIVER LI NOSIT DRIVER LI NOSIT
+              </Ustrd>
+            </RmtInf>
+          </TxDtls>
+          <TxDtls>
+            <Refs>
+              <AcctSvcrRef>1402P5518750498B0AO</AcctSvcrRef>
+              <PmtInfId>BATCHID</PmtInfId>
+              <EndToEndId>SDD SIT 024-5</EndToEndId>
+              <MndtId>mandateref24-5</MndtId>
+            </Refs>
+            <AmtDtls>
+              <TxAmt>
+                <Amt Ccy='EUR'>1.00</Amt>
+              </TxAmt>
+            </AmtDtls>
+            <BkTxCd>
+              <Domn>
+                <Cd>PMNT</Cd>
+                <Fmly>
+                  <Cd>IDDT</Cd>
+                  <SubFmlyCd>ESDD</SubFmlyCd>
+                </Fmly>
+              </Domn>
+              <Prtry>
+                <Cd>N247</Cd>
+                <Issr>ABNAMRO</Issr>
+              </Prtry>
+            </BkTxCd>
+            <RltdPties>
+              <Dbtr>
+                <Nm>R12 SDD SIT2</Nm>
+                <PstlAdr>
+                  <Ctry>NL</Ctry>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                </PstlAdr>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>NL27ABNA0562326340</IBAN>
+                </Id>
+              </DbtrAcct>
+            </RltdPties>
+            <RltdAgts>
+              <DbtrAgt>
+                <FinInstnId>
+                  <BIC>ABNANL2A</BIC>
+                </FinInstnId>
+              </DbtrAgt>
+            </RltdAgts>
+            <RmtInf>
+              <Ustrd>SIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI
+                NOSITSIT DRIVER LI NOSIT DRIVER LI NOSIT
+              </Ustrd>
+            </RmtInf>
+          </TxDtls>
+          <TxDtls>
+            <Refs>
+              <AcctSvcrRef>1402P5518750498B0AO</AcctSvcrRef>
+              <PmtInfId>BATCHID</PmtInfId>
+              <EndToEndId>SDD SIT 024-6</EndToEndId>
+              <MndtId>mandateref24-6</MndtId>
+            </Refs>
+            <AmtDtls>
+              <TxAmt>
+                <Amt Ccy='EUR'>1.00</Amt>
+              </TxAmt>
+            </AmtDtls>
+            <BkTxCd>
+              <Domn>
+                <Cd>PMNT</Cd>
+                <Fmly>
+                  <Cd>IDDT</Cd>
+                  <SubFmlyCd>ESDD</SubFmlyCd>
+                </Fmly>
+              </Domn>
+              <Prtry>
+                <Cd>N247</Cd>
+                <Issr>ABNAMRO</Issr>
+              </Prtry>
+            </BkTxCd>
+            <RltdPties>
+              <Dbtr>
+                <Nm>R12 SDD SIT2</Nm>
+                <PstlAdr>
+                  <Ctry>NL</Ctry>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                </PstlAdr>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>NL27ABNA0562326340</IBAN>
+                </Id>
+              </DbtrAcct>
+            </RltdPties>
+            <RltdAgts>
+              <DbtrAgt>
+                <FinInstnId>
+                  <BIC>ABNANL2A</BIC>
+                </FinInstnId>
+              </DbtrAgt>
+            </RltdAgts>
+            <RmtInf>
+              <Ustrd>SIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI
+                NOSITSIT DRIVER LI NOSIT DRIVER LI NOSIT
+              </Ustrd>
+            </RmtInf>
+          </TxDtls>
+          <TxDtls>
+            <Refs>
+              <AcctSvcrRef>1402P5518750498B0AO</AcctSvcrRef>
+              <PmtInfId>BATCHID</PmtInfId>
+              <EndToEndId>SDD SIT 024-7</EndToEndId>
+              <MndtId>mandateref24-7</MndtId>
+            </Refs>
+            <AmtDtls>
+              <TxAmt>
+                <Amt Ccy='EUR'>1.00</Amt>
+              </TxAmt>
+            </AmtDtls>
+            <BkTxCd>
+              <Domn>
+                <Cd>PMNT</Cd>
+                <Fmly>
+                  <Cd>IDDT</Cd>
+                  <SubFmlyCd>ESDD</SubFmlyCd>
+                </Fmly>
+              </Domn>
+              <Prtry>
+                <Cd>N247</Cd>
+                <Issr>ABNAMRO</Issr>
+              </Prtry>
+            </BkTxCd>
+            <RltdPties>
+              <Dbtr>
+                <Nm>R12 SDD SIT2</Nm>
+                <PstlAdr>
+                  <Ctry>NL</Ctry>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                  <AdrLine>R12 SDD SIT2</AdrLine>
+                </PstlAdr>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>NL27ABNA0562326340</IBAN>
+                </Id>
+              </DbtrAcct>
+            </RltdPties>
+            <RltdAgts>
+              <DbtrAgt>
+                <FinInstnId>
+                  <BIC>ABNANL2A</BIC>
+                </FinInstnId>
+              </DbtrAgt>
+            </RltdAgts>
+            <RmtInf>
+              <Ustrd>SIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI NOSITSIT DRIVER LI NOSIT DRIVER LI
+                NOSITSIT DRIVER LI NOSIT DRIVER LI NOSIT
+              </Ustrd>
+            </RmtInf>
+          </TxDtls>
+        </NtryDtls>
+        <AddtlNtryInf>/TRTP/SEPA Incasso batch/PREF/BATCHID/NRTX/7/PIND/BRUTO</AddtlNtryInf>
+      </Ntry>
+
+    </Stmt>
+  </BkToCstmrStmt>
+</Document>

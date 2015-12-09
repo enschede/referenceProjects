@@ -1,0 +1,50 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+  <job id="staxReaderJob" restartable="true">
+    <step id="staxReaderStep1" next="staxReaderStep2">
+      <tasklet allow-start-if-complete="true">
+        <chunk reader="staxReader" writer="dummyWriter" chunk-completion-policy="completionPolicy"/>
+      </tasklet>
+    </step>
+    
+    <step id="staxReaderStep2">
+      <tasklet allow-start-if-complete="true" ref="dummyProcessor"/>
+    </step>
+  </job>
+
+  <beans:bean id="staxReader" class="org.springframework.batch.item.xml.StaxEventItemReader">
+    <beans:property name="fragmentRootElementNames">
+      <beans:list>
+        <beans:value>header</beans:value>
+        <beans:value>item</beans:value>
+        <beans:value>footer</beans:value>
+      </beans:list>
+    </beans:property>
+    <beans:property name="resource" value="classpath:xsd/stax-reader-header.xml"/>
+    <beans:property name="unmarshaller">
+      <beans:bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <beans:property name="classesToBeBound">
+          <beans:list>
+            <beans:value>nl.marcenschede.springtest.stax.reader.valueobjects.Header</beans:value>
+            <beans:value>nl.marcenschede.springtest.stax.reader.valueobjects.Item</beans:value>
+            <beans:value>nl.marcenschede.springtest.stax.reader.valueobjects.Footer</beans:value>
+          </beans:list>
+        </beans:property>
+      </beans:bean>
+    </beans:property>
+  </beans:bean>
+
+  <beans:bean id="dummyWriter" class="nl.marcenschede.springtest.stax.reader.DummyWriter"/>
+  
+  <beans:bean id="dummyProcessor" class="nl.marcenschede.springtest.stax.reader.DummyProcessor"/>
+
+  <!--DefaultResultCompletionPolicy zorgt dat alle chunks ineens worden aangeboden bij de writer-->
+  <beans:bean id="completionPolicy" class="org.springframework.batch.repeat.policy.DefaultResultCompletionPolicy"/>
+</beans:beans>

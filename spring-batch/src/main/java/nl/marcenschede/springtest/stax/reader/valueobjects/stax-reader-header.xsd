@@ -1,0 +1,42 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://schema.marcenschede.nl/schema/v1_0"
+           targetNamespace="http://schema.marcenschede.nl/schema/v1_0"
+           elementFormDefault="qualified">
+
+  <xs:complexType name="header">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="account" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="footer">
+    <xs:sequence>
+      <xs:element name="TotalAmount" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="NumberOfItems" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="item">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="name" type="xs:string"/>
+      <xs:element name="amount" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="itemlist">
+    <xs:sequence>
+      <xs:element name="item" type="item" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="header" type="header" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="itemlist" type="itemlist" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="footer" type="footer" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
