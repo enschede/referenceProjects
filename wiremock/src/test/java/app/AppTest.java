@@ -17,9 +17,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @ContextConfiguration(classes = App.class)
 @WebAppConfiguration
@@ -40,11 +39,11 @@ public class AppTest {
 
         // Given
         MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-        System.out.printf("wireMockRule = [%s]\n", wireMockRule.listAllStubMappings().getMappings());
 
         // When
         MvcResult mvcResult =
-                mockMvc.perform(get("/test").contentType(MediaType.TEXT_PLAIN)).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+                mockMvc.perform(get("/test").contentType(MediaType.TEXT_PLAIN))
+                        .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
         // Then
         assertThat(mvcResult.getResponse().getContentAsString(), Matchers.is("Hello Testert!"));
