@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+target/
+*.iml
+.idea/
+
+*.sw*
+*~
+src/web-app/build/
+src/web-app/bin/
+src/web-app/node_modules/
+src/web-app/vendor/
