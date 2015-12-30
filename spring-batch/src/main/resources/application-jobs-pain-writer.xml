@@ -19,7 +19,7 @@
   <beans:bean id="countingReader" class="nl.marcenschede.springtest.stax.writer.CountingReader" scope="step"/>
 
   <beans:bean id="staxPainWriter" class="org.springframework.batch.item.xml.StaxEventItemWriter">
-    <beans:property name="resource" value="file:target/output/users.xml"/>
+    <beans:property name="resource" value="file:target/output/pain.xml"/>
     <beans:property name="encoding" value="ISO-8859-1"/>
     <beans:property name="version" value="1.0"/>
     <beans:property name="marshaller">
