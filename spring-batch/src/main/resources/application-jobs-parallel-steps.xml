@@ -1,0 +1,44 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+  <job id="parallelSteps" restartable="true">
+    <split id="creators" next="finalizer">
+      <flow>
+        <step id="pandExporter">
+          <tasklet>
+            <chunk reader="PandReader" writer="JsonWriter" commit-interval="1" />
+          </tasklet>
+        </step>
+      </flow>
+      <flow>
+        <step id="ORLExporter">
+          <tasklet>
+            <chunk reader="PandReader" writer="JsonWriter" commit-interval="1" />
+          </tasklet>
+        </step>
+      </flow>
+    </split>
+    <step id="finalizer">
+      <tasklet>
+        <chunk reader="PandReader" writer="JsonWriter" commit-interval="100" />
+      </tasklet>
+    </step>
+  </job>
+
+  <beans:bean id="PandReader" class="org.springframework.batch.item.database.JdbcCursorItemReader">
+    <beans:property name="dataSource" ref="dataSource"/>
+    <beans:property name="sql" value="select ID, NAME from PERSONS"/>
+    <beans:property name="rowMapper">
+      <beans:bean class="nl.marcenschede.springtest.parallel.ParallelRowMapper"/>
+    </beans:property>
+  </beans:bean>
+
+  <beans:bean id="JsonWriter" class="nl.marcenschede.springtest.parallel.ParallelWriter"/>
+
+</beans:beans>

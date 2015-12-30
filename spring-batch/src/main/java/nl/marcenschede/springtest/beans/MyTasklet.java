@@ -7,9 +7,6 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.InitializingBean;
 
-/**
- * Created by marc on 30/12/15.
- */
 public class MyTasklet implements Tasklet, InitializingBean {
 
     final static Logger logger = Logger.getLogger(MyTasklet.class);
@@ -23,7 +20,7 @@ public class MyTasklet implements Tasklet, InitializingBean {
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
         chunkContext.getStepContext().getStepExecution().getJobExecution().getExecutionContext().putString("bla","bla");
 
-        logger.debug("MyTasklet::execute started");
+        logger.debug("Started");
 
         return RepeatStatus.FINISHED;
     }
