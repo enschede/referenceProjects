@@ -21,17 +21,8 @@ public class Controller {
     Job errorsJob;
     
     @Autowired
-    Job staxWriterJob;
-    
-    @Autowired
     Job staxReaderJob;
     
-    @Autowired
-    Job staxCamtReaderJob;
-    
-    @Autowired
-    Job staxPainWriterJob;
-
     @RequestMapping("/job")
     public void handle() throws Exception {
         
@@ -53,16 +44,6 @@ public class Controller {
                         .addLong("starttime", System.currentTimeMillis()).toJobParameters();
 
         jobLauncher.run(errorsJob, jobParameters);
-    }
-
-    @RequestMapping("/staxwriterjob")
-    public void staxWriterJob() throws Exception {
-
-        JobParameters jobParameters =
-                new JobParametersBuilder()
-                        .addLong("starttime", System.currentTimeMillis()).toJobParameters();
-
-        jobLauncher.run(staxWriterJob, jobParameters);
     }
 
     @RequestMapping("/staxreaderjob")
