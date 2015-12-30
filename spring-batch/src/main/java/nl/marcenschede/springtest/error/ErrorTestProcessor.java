@@ -2,8 +2,6 @@ package nl.marcenschede.springtest.error;
 
 import nl.marcenschede.springtest.app.LogItem;
 import nl.marcenschede.springtest.app.LogItemRepository;
-import nl.marcenschede.springtest.app.Person;
-import nl.marcenschede.springtest.app.PersonRepository;
 import org.springframework.batch.core.annotation.AfterJob;
 import org.springframework.batch.core.annotation.AfterProcess;
 import org.springframework.batch.core.annotation.AfterStep;

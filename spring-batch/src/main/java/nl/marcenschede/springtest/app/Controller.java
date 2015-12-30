@@ -6,10 +6,7 @@ import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
 
 @RestController
 public class Controller {
@@ -34,9 +31,6 @@ public class Controller {
     
     @Autowired
     Job staxPainWriterJob;
-
-    @Autowired
-    private PersonRepository personRepository;
 
     @RequestMapping("/job")
     public void handle() throws Exception {
@@ -79,34 +73,6 @@ public class Controller {
                         .addLong("starttime", System.currentTimeMillis()).toJobParameters();
 
         jobLauncher.run(staxReaderJob, jobParameters);
-    }
-
-    @RequestMapping("/camtreaderjob")
-    public void camtReaderJob() throws Exception {
-
-        JobParameters jobParameters =
-                new JobParametersBuilder()
-                        .addLong("starttime", System.currentTimeMillis()).toJobParameters();
-
-        jobLauncher.run(staxCamtReaderJob, jobParameters);
-    }
-
-    @RequestMapping("/painwriterjob")
-    public void painWriterJob() throws Exception {
-
-        JobParameters jobParameters =
-                new JobParametersBuilder()
-                        .addLong("starttime", System.currentTimeMillis()).toJobParameters();
-
-        jobLauncher.run(staxPainWriterJob, jobParameters);
-    }
-
-    @RequestMapping("/person")
-    public @ResponseBody String person() throws Exception {
-
-        Optional<Person> personOptional = personRepository.findById(1L);
-        
-        return personOptional.toString();
     }
 
 }
