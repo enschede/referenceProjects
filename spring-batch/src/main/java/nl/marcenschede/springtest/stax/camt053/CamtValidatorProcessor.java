@@ -1,8 +1,6 @@
 package nl.marcenschede.springtest.stax.camt053;
 
-import nl.marcenschede.springtest.stax.camt053.xsd.AccountInterest2;
 import nl.marcenschede.springtest.stax.camt053.xsd.CashBalance3;
-import nl.marcenschede.springtest.stax.camt053.xsd.GroupHeader42;
 import nl.marcenschede.springtest.stax.camt053.xsd.ReportEntry2;
 import nl.marcenschede.springtest.stax.camt053.xsd.TotalTransactions2;
 import org.springframework.batch.core.ExitStatus;
@@ -15,7 +13,6 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ItemProcessor;
 
-import javax.batch.runtime.context.StepContext;
 import java.math.BigDecimal;
 import java.util.logging.Logger;
 
@@ -45,6 +42,7 @@ public class CamtValidatorProcessor implements ItemProcessor<Object, Object> {
     
     @Override
     public Object process(Object itemFromReader) throws Exception {
+        System.out.printf("itemFromReader.class = [%s]", itemFromReader.getClass().getName());
 
         if(itemFromReader instanceof CashBalance3) {
             processCashBalans3((CashBalance3)itemFromReader);

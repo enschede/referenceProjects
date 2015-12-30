@@ -14,7 +14,8 @@ public class CamtProcessor implements ItemProcessor<Object, CamtItem> {
     
     @Override
     public CamtItem process(Object itemFromReader) throws Exception {
-        
+        System.out.printf("itemFromReader.class = [%s]", itemFromReader.getClass().getName());
+
         if(itemFromReader instanceof GroupHeader42) {
             groupHeader42 = (GroupHeader42)itemFromReader;
             return null;
