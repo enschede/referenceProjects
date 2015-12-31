@@ -30,7 +30,6 @@ public class Controller {
         JobParameters jobParameters =
                 new JobParametersBuilder()
                         .addLong("starttime", System.currentTimeMillis())
-                        .addString("infile", "gmuhand.gmu")
                         .addString("outfile", "file:target/test-outputs/output.txt").toJobParameters();
         
         jobLauncher.run(ioSampleJob, jobParameters);
