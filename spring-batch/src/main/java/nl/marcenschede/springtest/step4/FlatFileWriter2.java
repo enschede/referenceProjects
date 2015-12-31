@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.UrlResource;
-import org.springframework.stereotype.Controller;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
  * Created by marc on 19/11/14.
  */
 @Configuration
-public class Step4Config {
+public class FlatFileWriter2 {
     
     @Bean
     @Scope("step")

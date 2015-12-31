@@ -1,0 +1,36 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+  <job id="ioSampleJob" restartable="true">
+    <step id="step1">
+      <tasklet allow-start-if-complete="true">
+        <chunk reader="itemReader4" writer="flatFileWriter1" commit-interval="1"/>
+      </tasklet>
+    </step>
+  </job>
+
+  <beans:bean id="itemReader4" class="nl.marcenschede.springtest.step4.MyItemReader4" scope="step"/>
+  <beans:bean id="flatFileWriter1" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+    <beans:property name="resource" value="#{jobParameters['outfile']}"/>
+    <beans:property name="lineAggregator">
+      <beans:bean class="nl.marcenschede.springtest.step4.FixedLengthLineAggregator">
+        <beans:property name="formats">
+          <beans:list>
+            <beans:value>id,%-6s</beans:value>
+            <beans:value>voornaam,%-40s</beans:value>
+            <beans:value>achternaam,%40s</beans:value>
+            <beans:value>adres.straat,%-40s</beans:value>
+            <beans:value>adres.huisnummer,%6s</beans:value>
+          </beans:list>
+        </beans:property>
+      </beans:bean>
+    </beans:property>
+  </beans:bean>
+
+</beans:beans>

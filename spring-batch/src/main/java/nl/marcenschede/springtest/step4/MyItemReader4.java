@@ -7,9 +7,6 @@ import org.springframework.batch.item.UnexpectedInputException;
 
 import java.text.ParseException;
 
-/**
- * Created by marc on 08/11/14.
- */
 public class MyItemReader4 implements ItemReader<Persoon> {
 
 

@@ -8,24 +8,13 @@
            http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
 
   <job id="ioSampleJob" restartable="true">
-    <step id="step1" next="step2">
+    <step id="step1" next="step4">
       <tasklet allow-start-if-complete="true">
         <chunk reader="itemReader" processor="itemProcessor" writer="itemWriter"
                chunk-completion-policy="completionPolicy"/>
         <listeners>
           <listener ref="stepListener"/>
         </listeners>
-      </tasklet>
-    </step>
-    <step id="step2" next="step3">
-      <tasklet allow-start-if-complete="true">
-        <chunk reader="itemReader2" writer="itemWriter2" commit-interval="3"/>
-      </tasklet>
-      <!--Hier geen step listener-->
-    </step>
-    <step id="step3" next="step4">
-      <tasklet allow-start-if-complete="true">
-        <chunk reader="itemReader3" writer="itemWriter2" commit-interval="2"/>
       </tasklet>
     </step>
     <step id="step4">
@@ -49,96 +38,5 @@
   <!--DefaultResultCompletionPolicy zorgt dat alle chunks ineens worden aangeboden bij de writer-->
   <beans:bean id="completionPolicy" class="org.springframework.batch.repeat.policy.DefaultResultCompletionPolicy"/>
 
-  <beans:bean id="itemReader2" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
-    <beans:property name="encoding" value="utf-8"/>
-    <!--Voorbeeld van late binding met een parameter uit de JobParameters. Let op dat; scope="step" is vereist-->
-    <!--Attributen ophalen uit jobExecutionContext of stepExecutionContext kan ook -->
-    <beans:property name="resource" value="classpath:#{jobParameters['infile']}"/>
-
-    <beans:property name="lineMapper">
-      <beans:bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
-
-        <beans:property name="lineTokenizer">
-          <beans:bean class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
-            <beans:property name="names" value="field1,field2"/>
-            <beans:property name="columns" value="1-5,6-10"/>
-
-            <!--Strict controleert de totale lengte, default true-->
-            <beans:property name="strict" value="false"/>
-
-          </beans:bean>
-        </beans:property>
-
-        <beans:property name="fieldSetMapper">
-          <beans:bean class="nl.marcenschede.springtest.step2.MyFieldMapper">
-          </beans:bean>
-        </beans:property>
-      </beans:bean>
-    </beans:property>
-  </beans:bean>
-
-  <beans:bean id="itemWriter2" class="nl.marcenschede.springtest.step2.MyItemWriter2" scope="step"/>
-
-  <beans:bean id="itemReader3" class="org.springframework.batch.item.file.FlatFileItemReader">
-    <beans:property name="encoding" value="utf-8"/>
-    <beans:property name="resource" value="classpath:gmuhand.gmu"/>
-
-    <beans:property name="lineMapper">
-      <beans:bean class="org.springframework.batch.item.file.mapping.PatternMatchingCompositeLineMapper">
-        <beans:property name="tokenizers">
-          <beans:map>
-            <beans:entry key="0001A*" value-ref="Tokenizer0001"/>
-            <beans:entry key="0010A*" value-ref="Tokenizer0010"/>
-            <beans:entry key="*" value-ref="Tokenizer0100"/>
-          </beans:map>
-        </beans:property>
-        <beans:property name="fieldSetMappers">
-          <beans:map>
-            <beans:entry key="0001A*" value-ref="FieldSetMapper0001"/>
-            <beans:entry key="0010A*" value-ref="FieldSetMapper0010"/>
-            <beans:entry key="*" value-ref="FieldSetMapper0100"/>
-          </beans:map>
-        </beans:property>
-      </beans:bean>
-    </beans:property>
-  </beans:bean>
-
-  <beans:bean id="Tokenizer0001" class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
-    <beans:property name="names" value="field1,field2,field3"/>
-    <beans:property name="columns" value="1-5,6-10,11-15"/>
-    <beans:property name="strict" value="false"/>
-  </beans:bean>
-  <beans:bean id="Tokenizer0010" class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
-    <beans:property name="names" value="field1,field2,field3"/>
-    <beans:property name="columns" value="1-5,6-10,11-15"/>
-    <beans:property name="strict" value="false"/>
-  </beans:bean>
-  <beans:bean id="Tokenizer0100" class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
-    <beans:property name="names" value="field1,field2,field3"/>
-    <beans:property name="columns" value="1-5,6-10,11-15"/>
-    <beans:property name="strict" value="false"/>
-  </beans:bean>
-
-  <beans:bean id="FieldSetMapper0001" class="nl.marcenschede.springtest.step3.MyFieldMapper1"/>
-  <beans:bean id="FieldSetMapper0010" class="nl.marcenschede.springtest.step3.MyFieldMapper2"/>
-  <beans:bean id="FieldSetMapper0100" class="nl.marcenschede.springtest.step3.MyFieldMapper3"/>
-
   <beans:bean id="itemReader4" class="nl.marcenschede.springtest.step4.MyItemReader4" scope="step"/>
-  <!--<beans:bean id="itemWriter4" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">-->
-    <!--<beans:property name="resource" value="#{jobParameters['outfile']}"/>-->
-    <!--<beans:property name="lineAggregator" ref="lineAggregator4">-->
-      <!--<beans:bean class="nl.marcenschede.springtest.step4.FixedLengthLineAggregator">-->
-        <!--<beans:property name="formats" ref="testformat">-->
-          <!--<beans:list>-->
-            <!--<beans:value>id,%-6s</beans:value>-->
-            <!--<beans:value>voornaam,%-40s</beans:value>-->
-            <!--<beans:value>achternaam,%40s</beans:value>-->
-            <!--<beans:value>adres.straat,%-40s</beans:value>-->
-            <!--<beans:value>adres.huisnummer,%6s</beans:value>-->
-          <!--</beans:list>-->
-        <!--</beans:property>-->
-      <!--</beans:bean>-->
-    <!--</beans:property>-->
-  <!--</beans:bean>-->
-
 </beans:beans>
