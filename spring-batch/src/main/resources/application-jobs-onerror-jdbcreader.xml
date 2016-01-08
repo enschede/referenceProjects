@@ -1,0 +1,45 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+  <job id="errorsJobJdbc" restartable="true">
+    <step id="errorstep">
+      <tasklet allow-start-if-complete="true">
+        <chunk reader="itemErrorReader" processor="itemErrorProcessor" writer="itemErrorWriter" commit-interval="5" skip-limit="1000">
+          <skippable-exception-classes>
+            <include class="nl.marcenschede.springtest.error.FunctionException"/>
+          </skippable-exception-classes>
+          <listeners>
+            <listener ref="itemErrorChunkExecutionListener"/>
+          </listeners>
+        </chunk>
+      </tasklet>
+      <listeners>
+        <listener ref="itemErrorStepExecutionListener"/>
+      </listeners>
+    </step>
+  </job>
+
+  <!--scope="step" is van belang om de scope van het object af te bakenen, default is dit iets van global-->
+  <beans:bean id="itemErrorReader" class="org.springframework.batch.item.database.JdbcCursorItemReader" scope="step">
+    <beans:property name="dataSource" ref="dataSource" />
+    <beans:property name="sql"
+              value="select ID, NUMBER from INPUT" />
+    <beans:property name="rowMapper">
+      <beans:bean class="nl.marcenschede.springtest.error.NumberRowMapper" />
+    </beans:property>
+  </beans:bean>
+
+  <beans:bean id="itemErrorProcessor" class="nl.marcenschede.springtest.error.ErrorTestProcessor"/>
+  <beans:bean id="itemErrorWriter" class="nl.marcenschede.springtest.error.ErrorTestWriter"/>
+
+  <beans:bean id="itemErrorChunkExecutionListener" class="nl.marcenschede.springtest.error.MyChunkExecutionListener"/>
+  <beans:bean id="itemErrorStepExecutionListener" class="nl.marcenschede.springtest.error.MyStepExecutionListener"/>
+
+  <beans:bean class="org.springframework.batch.core.scope.StepScope" />
+</beans:beans>
