@@ -20,6 +20,9 @@ public class Controller {
     @Autowired
     Job errorsJob;
     
+    @Autowired
+    Job errorsJobJdbc;
+
     @RequestMapping("/job")
     public void handle() throws Exception {
         
@@ -33,13 +36,23 @@ public class Controller {
     }
 
     @RequestMapping("/errorjob")
-    public void process2() throws Exception {
+    public void processErrorJob() throws Exception {
 
         JobParameters jobParameters =
                 new JobParametersBuilder()
                         .addLong("starttime", System.currentTimeMillis()).toJobParameters();
 
         jobLauncher.run(errorsJob, jobParameters);
+    }
+
+    @RequestMapping("/errorjobjdbc")
+    public void processErrorJobJdbc() throws Exception {
+
+        JobParameters jobParameters =
+                new JobParametersBuilder()
+                        .addLong("starttime", System.currentTimeMillis()).toJobParameters();
+
+        jobLauncher.run(errorsJobJdbc, jobParameters);
     }
 
 }

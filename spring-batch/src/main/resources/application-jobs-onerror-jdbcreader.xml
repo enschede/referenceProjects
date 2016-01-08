@@ -7,10 +7,10 @@
            http://www.springframework.org/schema/batch
            http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
 
-  <job id="errorsJob" restartable="true">
-    <step id="errorstep1">
+  <job id="errorsJobJdbc" restartable="true">
+    <step id="errorstep2">
       <tasklet allow-start-if-complete="true">
-        <chunk reader="itemErrorReader1" processor="itemErrorProcessor" writer="itemErrorWriter" commit-interval="5" skip-limit="1000">
+        <chunk reader="itemErrorReader2" processor="itemErrorProcessor" writer="itemErrorWriter" commit-interval="5" skip-limit="1000">
           <skippable-exception-classes>
             <include class="nl.marcenschede.springtest.error.FunctionException"/>
           </skippable-exception-classes>
@@ -26,7 +26,15 @@
   </job>
 
   <!--scope="step" is van belang om de scope van het object af te bakenen, default is dit iets van global-->
-  <beans:bean id="itemErrorReader1" class="nl.marcenschede.springtest.error.ErrorTestReader" scope="step"/>
+  <beans:bean id="itemErrorReader2" class="org.springframework.batch.item.database.JdbcCursorItemReader" scope="step">
+    <beans:property name="dataSource" ref="dataSource" />
+    <beans:property name="sql"
+              value="select ID, NUMBER from INPUT" />
+    <beans:property name="rowMapper">
+      <beans:bean class="nl.marcenschede.springtest.error.NumberRowMapper" />
+    </beans:property>
+  </beans:bean>
+
   <beans:bean id="itemErrorProcessor" class="nl.marcenschede.springtest.error.ErrorTestProcessor"/>
   <beans:bean id="itemErrorWriter" class="nl.marcenschede.springtest.error.ErrorTestWriter"/>
 
