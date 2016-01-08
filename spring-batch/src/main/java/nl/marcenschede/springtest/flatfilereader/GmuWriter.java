@@ -1,6 +1,5 @@
-package nl.marcenschede.springtest.step2;
+package nl.marcenschede.springtest.flatfilereader;
 
-import nl.marcenschede.springtest.step2.GmuVO;
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ItemWriter;
 
@@ -9,7 +8,7 @@ import java.util.List;
 /**
  * Created by marc on 08/11/14.
  */
-public class MyItemWriter2 implements ItemWriter<GmuVO> {
+public class GmuWriter implements ItemWriter<GmuVO> {
 
     @BeforeStep
     public void beforeStep() {

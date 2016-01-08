@@ -10,16 +10,16 @@
   <job id="ioSampleJob" restartable="true">
     <step id="step1">
       <tasklet allow-start-if-complete="true">
-        <chunk reader="itemReader4" writer="flatFileWriter1" commit-interval="1"/>
+        <chunk reader="countingPersonReader" writer="flatFileWriter1" commit-interval="1"/>
       </tasklet>
     </step>
   </job>
 
-  <beans:bean id="itemReader4" class="nl.marcenschede.springtest.step4.MyItemReader4" scope="step"/>
+  <beans:bean id="countingPersonReader" class="nl.marcenschede.springtest.flatfilewriter.CountingPersonReader" scope="step"/>
   <beans:bean id="flatFileWriter1" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
     <beans:property name="resource" value="#{jobParameters['outfile']}"/>
     <beans:property name="lineAggregator">
-      <beans:bean class="nl.marcenschede.springtest.step4.FixedLengthLineAggregator">
+      <beans:bean class="nl.marcenschede.springtest.step2.FixedLengthLineAggregator">
         <beans:property name="formats">
           <beans:list>
             <beans:value>id,%-6s</beans:value>

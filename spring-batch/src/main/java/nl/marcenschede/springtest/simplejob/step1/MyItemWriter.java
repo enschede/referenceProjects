@@ -1,9 +1,8 @@
-package nl.marcenschede.springtest.step1;
+package nl.marcenschede.springtest.simplejob.step1;
 
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ItemWriter;
 
-import javax.batch.runtime.StepExecution;
 import java.util.List;
 
 /**

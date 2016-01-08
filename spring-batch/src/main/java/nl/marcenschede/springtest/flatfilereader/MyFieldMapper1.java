@@ -1,4 +1,4 @@
-package nl.marcenschede.springtest.step3;
+package nl.marcenschede.springtest.flatfilereader;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;

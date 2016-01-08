@@ -1,4 +1,4 @@
-package nl.marcenschede.springtest.step4;
+package nl.marcenschede.springtest.simplejob.step2;
 
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.item.ItemReader;
@@ -19,6 +19,6 @@ public class MyItemReader4 implements ItemReader<Persoon> {
         if (teller == 11)
             return null;
 
-        return new Persoon(teller++, "Yvette", "Enschede", new Adres("Marie de Roodelaan", 6));
+        return new Persoon(teller++, "Test", "Person", new Adres("MyAddress", 6));
     }
 }

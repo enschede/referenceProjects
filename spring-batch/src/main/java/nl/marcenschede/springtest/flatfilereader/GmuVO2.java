@@ -1,10 +1,5 @@
-package nl.marcenschede.springtest.step3;
+package nl.marcenschede.springtest.flatfilereader;
 
-import nl.marcenschede.springtest.step2.GmuVO;
-
-/**
- * Created by marc on 10/11/14.
- */
 public class GmuVO2 extends GmuVO {
     private String field4;
 

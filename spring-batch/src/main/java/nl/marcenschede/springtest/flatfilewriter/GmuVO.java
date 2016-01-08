@@ -1,4 +1,4 @@
-package nl.marcenschede.springtest.step2;
+package nl.marcenschede.springtest.flatfilewriter;
 
 /**
  * Created by marc on 10/11/14.

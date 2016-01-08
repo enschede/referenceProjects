@@ -1,4 +1,4 @@
-package nl.marcenschede.springtest.step4;
+package nl.marcenschede.springtest.step2;
 
 import org.springframework.batch.item.file.transform.LineAggregator;
 import org.springframework.util.ReflectionUtils;

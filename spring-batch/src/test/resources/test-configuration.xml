@@ -22,6 +22,6 @@
         <property name="jobRepository" ref="jobRepository" />
     </bean>
 
-    <bean id="flatFileWriter2" class="nl.marcenschede.springtest.step4.FlatFileWriter2"/>
+    <bean id="flatFileWriter2" class="nl.marcenschede.springtest.step2.FlatFileWriter2"/>
 
 </beans>

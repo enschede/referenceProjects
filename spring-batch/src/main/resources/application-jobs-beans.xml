@@ -12,6 +12,11 @@
       <tasklet allow-start-if-complete="true">
         <beans:bean class="nl.marcenschede.springtest.beans.MyTasklet"/>
       </tasklet>
+      <listeners>
+        <listener>
+          <beans:bean class="nl.marcenschede.springtest.beans.TaskletStepListener"/>
+        </listener>
+      </listeners>
     </step>
   </job>
 

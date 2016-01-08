@@ -7,8 +7,8 @@
            http://www.springframework.org/schema/batch
            http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
 
-  <job id="ioSampleJob" restartable="true">
-    <step id="step1" next="step4">
+  <job id="simpleJob" restartable="true">
+    <step id="step1" next="step2">
       <tasklet allow-start-if-complete="true">
         <chunk reader="itemReader" processor="itemProcessor" writer="itemWriter"
                chunk-completion-policy="completionPolicy"/>
@@ -17,7 +17,7 @@
         </listeners>
       </tasklet>
     </step>
-    <step id="step4">
+    <step id="step2">
       <tasklet allow-start-if-complete="true">
         <chunk reader="itemReader4" writer="itemWriter4" commit-interval="1"/>
       </tasklet>
@@ -28,15 +28,15 @@
   </job>
 
   <!--scope="step" is van belang om de scope van het object af te bakenen, default is dit iets van global-->
-  <beans:bean id="itemReader" class="nl.marcenschede.springtest.step1.MyItemReader" scope="step"/>
-  <beans:bean id="itemProcessor" class="nl.marcenschede.springtest.step1.ItemProcessor"/>
-  <beans:bean id="itemWriter" class="nl.marcenschede.springtest.step1.MyItemWriter"/>
+  <beans:bean id="itemReader" class="nl.marcenschede.springtest.simplejob.step1.MyItemReader" scope="step"/>
+  <beans:bean id="itemProcessor" class="nl.marcenschede.springtest.simplejob.step1.ItemProcessor"/>
+  <beans:bean id="itemWriter" class="nl.marcenschede.springtest.simplejob.step1.MyItemWriter"/>
 
-  <beans:bean id="stepListener" class="nl.marcenschede.springtest.step1.MyStepListener"/>
-  <beans:bean id="jobListener" class="nl.marcenschede.springtest.step1.MyJobListener"/>
+  <beans:bean id="stepListener" class="nl.marcenschede.springtest.simplejob.step1.MyStepListener"/>
+  <beans:bean id="jobListener" class="nl.marcenschede.springtest.simplejob.step1.MyJobListener"/>
 
   <!--DefaultResultCompletionPolicy zorgt dat alle chunks ineens worden aangeboden bij de writer-->
   <beans:bean id="completionPolicy" class="org.springframework.batch.repeat.policy.DefaultResultCompletionPolicy"/>
 
-  <beans:bean id="itemReader4" class="nl.marcenschede.springtest.step4.MyItemReader4" scope="step"/>
+  <beans:bean id="itemReader4" class="nl.marcenschede.springtest.simplejob.step2.MyItemReader4" scope="step"/>
 </beans:beans>

@@ -15,13 +15,10 @@ public class Controller {
     JobLauncher jobLauncher;
 
     @Autowired
-    Job ioSampleJob;
+    Job simpleJob;
     
     @Autowired
     Job errorsJob;
-    
-    @Autowired
-    Job staxReaderJob;
     
     @RequestMapping("/job")
     public void handle() throws Exception {
@@ -32,7 +29,7 @@ public class Controller {
                         .addLong("starttime", System.currentTimeMillis())
                         .addString("outfile", "file:target/test-outputs/output.txt").toJobParameters();
         
-        jobLauncher.run(ioSampleJob, jobParameters);
+        jobLauncher.run(simpleJob, jobParameters);
     }
 
     @RequestMapping("/errorjob")
@@ -43,16 +40,6 @@ public class Controller {
                         .addLong("starttime", System.currentTimeMillis()).toJobParameters();
 
         jobLauncher.run(errorsJob, jobParameters);
-    }
-
-    @RequestMapping("/staxreaderjob")
-    public void staxReaderJob() throws Exception {
-
-        JobParameters jobParameters =
-                new JobParametersBuilder()
-                        .addLong("starttime", System.currentTimeMillis()).toJobParameters();
-
-        jobLauncher.run(staxReaderJob, jobParameters);
     }
 
 }

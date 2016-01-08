@@ -1,9 +1,8 @@
-package nl.marcenschede.springtest.step1;
+package nl.marcenschede.springtest.simplejob.step1;
 
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
-import org.springframework.batch.core.StepListener;
 
 /**
  * Created by marc on 10/11/14.

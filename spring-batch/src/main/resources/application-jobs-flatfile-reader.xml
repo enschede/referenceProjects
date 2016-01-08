@@ -7,21 +7,20 @@
            http://www.springframework.org/schema/batch
            http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
 
-  <job id="ioSampleJob" restartable="true">
+  <job id="flatFileReaderJob" restartable="true">
     <step id="step2" next="step3">
       <tasklet allow-start-if-complete="true">
-        <chunk reader="itemReader2" writer="itemWriter2" commit-interval="3"/>
+        <chunk reader="flatFileReader1" writer="gmuWriter" commit-interval="3"/>
       </tasklet>
-      <!--Hier geen step listener-->
     </step>
     <step id="step3">
       <tasklet allow-start-if-complete="true">
-        <chunk reader="itemReader3" writer="itemWriter2" commit-interval="2"/>
+        <chunk reader="flatFileReader2" writer="gmuWriter" commit-interval="2"/>
       </tasklet>
     </step>
   </job>
 
-  <beans:bean id="itemReader2" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+  <beans:bean id="flatFileReader1" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
     <beans:property name="encoding" value="utf-8"/>
     <!--Voorbeeld van late binding met een parameter uit de JobParameters. Let op dat; scope="step" is vereist-->
     <!--Attributen ophalen uit jobExecutionContext of stepExecutionContext kan ook -->
@@ -42,16 +41,16 @@
         </beans:property>
 
         <beans:property name="fieldSetMapper">
-          <beans:bean class="nl.marcenschede.springtest.step2.MyFieldMapper">
+          <beans:bean class="nl.marcenschede.springtest.flatfilereader.MyFieldMapper">
           </beans:bean>
         </beans:property>
       </beans:bean>
     </beans:property>
   </beans:bean>
 
-  <beans:bean id="itemWriter2" class="nl.marcenschede.springtest.step2.MyItemWriter2" scope="step"/>
+  <beans:bean id="gmuWriter" class="nl.marcenschede.springtest.flatfilereader.GmuWriter" scope="step"/>
 
-  <beans:bean id="itemReader3" class="org.springframework.batch.item.file.FlatFileItemReader">
+  <beans:bean id="flatFileReader2" class="org.springframework.batch.item.file.FlatFileItemReader">
     <beans:property name="encoding" value="utf-8"/>
     <beans:property name="resource" value="classpath:gmuhand.gmu"/>
 
@@ -91,7 +90,7 @@
     <beans:property name="strict" value="false"/>
   </beans:bean>
 
-  <beans:bean id="FieldSetMapper0001" class="nl.marcenschede.springtest.step3.MyFieldMapper1"/>
-  <beans:bean id="FieldSetMapper0010" class="nl.marcenschede.springtest.step3.MyFieldMapper2"/>
-  <beans:bean id="FieldSetMapper0100" class="nl.marcenschede.springtest.step3.MyFieldMapper3"/>
+  <beans:bean id="FieldSetMapper0001" class="nl.marcenschede.springtest.flatfilereader.MyFieldMapper1"/>
+  <beans:bean id="FieldSetMapper0010" class="nl.marcenschede.springtest.flatfilereader.MyFieldMapper2"/>
+  <beans:bean id="FieldSetMapper0100" class="nl.marcenschede.springtest.flatfilereader.MyFieldMapper3"/>
 </beans:beans>

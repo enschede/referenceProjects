@@ -1,4 +1,4 @@
-package nl.marcenschede.springtest.step1;
+package nl.marcenschede.springtest.simplejob.step1;
 
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobExecution;

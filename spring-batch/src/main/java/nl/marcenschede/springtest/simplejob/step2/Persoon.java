@@ -1,4 +1,4 @@
-package nl.marcenschede.springtest.step4;
+package nl.marcenschede.springtest.simplejob.step2;
 
 /**
  * Created by marc on 18/11/14.
