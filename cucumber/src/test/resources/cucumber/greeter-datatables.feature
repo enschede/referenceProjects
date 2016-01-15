@@ -3,6 +3,7 @@ Feature: Calculator
   I want to greet a user
   So that I can send him/her a letter
 
+  # nl: Achtergrond
   Background:
     Given I have a person
     And saluations are:
@@ -29,4 +30,5 @@ Feature: Calculator
     Then the saluation is "Geachte mevrouw Kuiper"
     And the persons sex is "FEMALE"
     # But is hetzelfde als And, het klinkt alleen anders voor de gebruiker
+    # nl: Maar
     But the persons sex is "FEMALE"
