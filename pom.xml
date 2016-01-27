@@ -11,6 +11,7 @@
 
     <modules>
         <module>bootstrap</module>
+        <module>CryptoTest</module>
         <module>cucumber</module>
         <module>docker</module>
         <module>dozer</module>
