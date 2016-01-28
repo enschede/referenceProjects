@@ -3,7 +3,6 @@ package SpringMvcIntegrationTest;
 import app.App;
 import app.domain.Gebied;
 import app.domain.VergunningAanvraag;
-import app.presentation.Controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 /**
  * Created by marc on 21/05/15.
  */
-@ContextConfiguration(classes = App.class)
+@ContextConfiguration(classes = {App.class,TestConfig.class})
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 public class SpringRunnerMvcIntegrationTest {
@@ -34,9 +33,6 @@ public class SpringRunnerMvcIntegrationTest {
     @Autowired
     private WebApplicationContext wac;
 
-    @Autowired
-    private Controller controller;
-    
     @Test
     public void shouldReplyOnMvc() throws Exception {
 

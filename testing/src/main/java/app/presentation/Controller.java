@@ -3,6 +3,7 @@ package app.presentation;
 import app.application.VerwerkVergunningProcessor;
 import app.domain.VergunningAanvraag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,9 @@ public class Controller {
 
     @Autowired
     private VerwerkVergunningProcessor verwerkVergunningProcessor;
+
+    @Value("${my.resource}")
+    private String myResource;
 
     public Controller() {
     }
