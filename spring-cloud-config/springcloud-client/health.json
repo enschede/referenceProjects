@@ -1,0 +1,18 @@
+{
+  "status": "UP",
+  "diskSpace": {
+    "status": "UP",
+    "total": 748371836928,
+    "free": 293041549312,
+    "threshold": 10485760
+  },
+  "refreshScope": {
+    "status": "UP"
+  },
+  "configServer": {
+    "status": "UP",
+    "propertySources": [
+      "file:///Users/marc/config-repo/application.properties"
+    ]
+  }
+}

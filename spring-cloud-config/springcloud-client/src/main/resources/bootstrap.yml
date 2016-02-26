@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: foo
+
+  # default profile is DEFAULT, dan worden properties uit application.properties van github gehaald
+  # bij een niet bestaand profile wordt ook default gedaan
+  # profile kan het beste met environment settings meegegeven worden, dus niet hier
+  profiles:
+    active: development
+
+  # Default label is master
+  # label kan het beste met environment settings meegegeven worden, dus niet hier
+  cloud:
+    config:
+      label: master
