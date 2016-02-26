@@ -4,20 +4,13 @@ import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.annotation.AfterJob;
-import org.springframework.batch.core.annotation.AfterStep;
-import org.springframework.batch.core.annotation.BeforeJob;
-import org.springframework.batch.core.annotation.BeforeRead;
-import org.springframework.batch.core.annotation.BeforeStep;
+import org.springframework.batch.core.annotation.*;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.UnexpectedInputException;
 
 import java.text.ParseException;
 
-/**
- * Created by marc on 08/11/14.
- */
 public class MyItemReader implements ItemReader<String> {
 
 
@@ -51,10 +44,15 @@ public class MyItemReader implements ItemReader<String> {
     }
 
     @BeforeRead
-    public void beforeStep() {
-        System.out.println("MyItemReader::beforeStep");
+    public void beforeRead() {
+        System.out.println("MyItemReader::beforeRead");
     }
     
+    @BeforeChunk
+    public void beforeChunk() {
+        System.out.println("MyItemReader::beforeChunk");
+    }
+
     @Override
     public String read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 

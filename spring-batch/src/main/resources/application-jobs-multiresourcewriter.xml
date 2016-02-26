@@ -1,0 +1,41 @@
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+
+    <job id="simpleJob" restartable="true">
+        <step id="step1">
+            <tasklet allow-start-if-complete="true">
+                <chunk reader="itemReader" processor="itemProcessor" writer="itemWriter" commit-interval="3"/>
+                <listeners>
+                    <listener ref="stepListener"/>
+                </listeners>
+            </tasklet>
+        </step>
+        <listeners>
+            <listener ref="jobListener"/>
+        </listeners>
+    </job>
+
+    <!--scope="step" is van belang om de scope van het object af te bakenen, default is dit iets van global-->
+    <beans:bean id="itemReader" class="nl.marcenschede.springtest.simplejob.step1.MyItemReader" scope="step"/>
+    <beans:bean id="itemProcessor" class="nl.marcenschede.springtest.simplejob.step1.ItemProcessor"/>
+    <beans:bean id="itemWriter" class="nl.marcenschede.springtest.multiResourceWriter.MyMultiResourceWriter">
+        <beans:property name="resource" value="file:target/output"/>
+        <beans:property name="delegate" ref="delegateWriter"/>
+
+        <!--De minimale count is gelijk de chunklimit, pas wanneer de limit is overschreden wordt een nieuw resource gemaakt-->
+        <beans:property name="itemCountLimitPerResource" value="8" />
+        <beans:property name="saveState" value="true" />
+    </beans:bean>
+
+    <beans:bean id="delegateWriter" class="nl.marcenschede.springtest.multiResourceWriter.MyResourceAwareItemWriter"/>
+
+    <beans:bean id="stepListener" class="nl.marcenschede.springtest.simplejob.step1.MyStepListener"/>
+    <beans:bean id="jobListener" class="nl.marcenschede.springtest.simplejob.step1.MyJobListener"/>
+
+</beans:beans>
