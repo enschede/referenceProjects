@@ -1,9 +1,10 @@
 package app;
 
-import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.hamcrest.Matchers;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @RunWith(SpringJUnit4ClassRunner.class)
 public class NoMappingAppTest {
 
-    private WireMockServer wireMockServer = new WireMockServer(WireMockConfiguration.wireMockConfig().port(8091));
+    @Rule
+    public WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.wireMockConfig().port(8091));
 
     @Autowired
     private WebApplicationContext wac;
@@ -39,14 +41,15 @@ public class NoMappingAppTest {
         // Given
         MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 
-        wireMockServer.start();;
-        WireMock.configureFor(8091);
         WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/test"))
+                .withHeader("X-header", WireMock.equalTo("data"))   // Doet nog geen controle, nakijken
                 .willReturn(WireMock.aResponse().withBody("Hello Testert!").withStatus(200)));
 
         // When
         MvcResult mvcResult =
-                mockMvc.perform(get("/test").contentType(MediaType.TEXT_PLAIN))
+                mockMvc.perform(get("/test")
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .header("X-header", "test"))
                         .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
         // Then
