@@ -14,6 +14,11 @@ public class MyStepExecutionListener implements StepExecutionListener {
 
     @Autowired
     private LogItemRepository logItemRepository;
+    private String bla;
+
+    public MyStepExecutionListener(String bla) {
+        this.bla = bla;
+    }
 
     @Override
     public void beforeStep(StepExecution stepExecution) {
@@ -25,6 +30,8 @@ public class MyStepExecutionListener implements StepExecutionListener {
     @Override
     public ExitStatus afterStep(StepExecution stepExecution) {
         System.out.println("MyStepExecutionListener afterStep");
+
+//        stepExecution.setStatus();
 
         logItemRepository.save(new LogItem(-1, "MyStepExecutionListener::afterStep"));
         return null;

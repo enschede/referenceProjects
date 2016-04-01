@@ -7,31 +7,34 @@
            http://www.springframework.org/schema/batch
            http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
 
-  <job id="errorsJob" restartable="true">
-    <step id="errorstep1">
-      <tasklet allow-start-if-complete="true">
-        <chunk reader="itemErrorReader1" processor="itemErrorProcessor" writer="itemErrorWriter" commit-interval="5" skip-limit="1000">
-          <skippable-exception-classes>
-            <include class="nl.marcenschede.springtest.error.FunctionException"/>
-          </skippable-exception-classes>
-          <listeners>
-            <listener ref="itemErrorChunkExecutionListener"/>
-          </listeners>
-        </chunk>
-      </tasklet>
-      <listeners>
-        <listener ref="itemErrorStepExecutionListener"/>
-      </listeners>
-    </step>
-  </job>
+    <job id="errorsJob" restartable="true">
+        <step id="errorstep1">
+            <tasklet allow-start-if-complete="true">
+                <chunk reader="itemErrorReader1" processor="itemErrorProcessor" writer="itemErrorWriter"
+                       commit-interval="5" skip-limit="1000">
+                    <skippable-exception-classes>
+                        <include class="nl.marcenschede.springtest.error.FunctionException"/>
+                    </skippable-exception-classes>
+                    <listeners>
+                        <listener ref="itemErrorChunkExecutionListener"/>
+                    </listeners>
+                </chunk>
+            </tasklet>
+            <listeners>
+                <listener ref="itemErrorStepExecutionListener"/>
+            </listeners>
+        </step>
+    </job>
 
-  <!--scope="step" is van belang om de scope van het object af te bakenen, default is dit iets van global-->
-  <beans:bean id="itemErrorReader1" class="nl.marcenschede.springtest.error.ErrorTestReader" scope="step"/>
-  <beans:bean id="itemErrorProcessor" class="nl.marcenschede.springtest.error.ErrorTestProcessor"/>
-  <beans:bean id="itemErrorWriter" class="nl.marcenschede.springtest.error.ErrorTestWriter"/>
+    <!--scope="step" is van belang om de scope van het object af te bakenen, default is dit iets van global-->
+    <beans:bean id="itemErrorReader1" class="nl.marcenschede.springtest.error.ErrorTestReader" scope="step"/>
+    <beans:bean id="itemErrorProcessor" class="nl.marcenschede.springtest.error.ErrorTestProcessor"/>
+    <beans:bean id="itemErrorWriter" class="nl.marcenschede.springtest.error.ErrorTestWriter"/>
 
-  <beans:bean id="itemErrorChunkExecutionListener" class="nl.marcenschede.springtest.error.MyChunkExecutionListener"/>
-  <beans:bean id="itemErrorStepExecutionListener" class="nl.marcenschede.springtest.error.MyStepExecutionListener"/>
+    <beans:bean id="itemErrorChunkExecutionListener" class="nl.marcenschede.springtest.error.MyChunkExecutionListener"/>
+    <beans:bean id="itemErrorStepExecutionListener" class="nl.marcenschede.springtest.error.MyStepExecutionListener">
+        <beans:constructor-arg name="bla" value="bla"/>
+    </beans:bean>
 
-  <beans:bean class="org.springframework.batch.core.scope.StepScope" />
+    <beans:bean class="org.springframework.batch.core.scope.StepScope"/>
 </beans:beans>
