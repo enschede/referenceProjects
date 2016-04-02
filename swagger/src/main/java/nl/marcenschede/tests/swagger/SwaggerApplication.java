@@ -10,6 +10,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
+//@EnableWebMvc			// Enabling this will block fixed content
 @EnableSwagger2
 public class SwaggerApplication {
 
