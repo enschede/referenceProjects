@@ -32,12 +32,13 @@ public class MethodReferenceTest {
                 .add("Kitty Enschede", "Enschede", "1967-06-23", "Koken")
                 .add("Marc Enschede", "Enschede", "1966-02-22", "ICT", "Politiek").build();
 
-        String naam = printNaam(personen.get(0), Persoon::getNaam);
+        // Op deze manier kan een strategie of formulie geinjecteerd worden
+        String naam = printAttribuut(personen.get(0), Persoon::getNaam);
 
         assertThat(naam, is("Yvette Enschede"));
     }
 
-    private String printNaam(Persoon persoon, Function<Persoon, String> f) {
+    private String printAttribuut(Persoon persoon, Function<Persoon, String> f) {
         String naam = f.apply(persoon);
 
         return naam;
@@ -56,12 +57,12 @@ public class MethodReferenceTest {
                 .add("Marc Enschede", "Enschede", "1966-02-22", "ICT", "Politiek").build();
 
         BiFunction<List<Persoon>, Integer, String> function = (innerPersonen, integer) -> innerPersonen.get(integer).getNaam();
-        String naam = printNaam(personen, 0, function);
+        String naam = printAttribuut(personen, 0, function);
 
         assertThat(naam, is("Yvette Enschede"));
     }
 
-    private String printNaam(List<Persoon> personen, Integer index, BiFunction<List<Persoon>, Integer, String> f) {
+    private String printAttribuut(List<Persoon> personen, Integer index, BiFunction<List<Persoon>, Integer, String> f) {
         String naam = f.apply(personen, index);
 
         return naam;

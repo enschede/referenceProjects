@@ -144,9 +144,10 @@ public class CollectorTest {
                 .add("Kitty Enschede", "Enschede", "1967-06-23", "Koken")
                 .add("Marc Enschede", "Enschede", "1966-02-22", "ICT", "Politiek").build();
 
-        List<Persoon> persoonList = personen.stream().collect(ImmutableListCollector.toImmutableList());
+        List<Persoon> immutableList = personen.stream()
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
 
-        persoonList.add(Persoon.create("Marc Enschede", "Enschede", "1966-02-22", null));
+        immutableList.add(Persoon.create("Marc Enschede", "Enschede", "1966-02-22", null));
     }
 
 }
