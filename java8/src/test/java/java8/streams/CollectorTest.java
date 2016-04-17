@@ -5,11 +5,11 @@ import org.hamcrest.Matchers;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.*;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -134,5 +134,19 @@ public class CollectorTest {
         assertThat(result, CoreMatchers.is("Yvette EnschedeMaurice Enschede"));
     }
 
+
+    // See: https://www.jayway.com/2013/11/12/immutable-list-collector-in-java-8/
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldCreateImmutableList() {
+        List<Persoon> personen = new PersoonBuilder()
+                .add("Yvette Enschede", "Annen", "1999-06-18", "Voetbal")
+                .add("Maurice Enschede", "Annen", "1998-03-10", "ICT")
+                .add("Kitty Enschede", "Enschede", "1967-06-23", "Koken")
+                .add("Marc Enschede", "Enschede", "1966-02-22", "ICT", "Politiek").build();
+
+        List<Persoon> persoonList = personen.stream().collect(ImmutableListCollector.toImmutableList());
+
+        persoonList.add(Persoon.create("Marc Enschede", "Enschede", "1966-02-22", null));
+    }
 
 }
