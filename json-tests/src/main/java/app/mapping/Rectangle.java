@@ -1,4 +1,4 @@
-package app;
+package app.mapping;
 
 /**
  * Created by marc on 18/01/16.

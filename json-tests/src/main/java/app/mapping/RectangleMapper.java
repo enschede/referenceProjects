@@ -1,4 +1,4 @@
-package app;
+package app.mapping;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
