@@ -1,6 +1,7 @@
 package com.example;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "TABLE_B")
@@ -10,6 +11,12 @@ import javax.persistence.*;
 public class TypeB extends Generic {
 
     private String naamB;
+
+    @ManyToOne
+    private TypeA typeA;
+
+    @ManyToMany
+    private List<TypeA> typeAList;
 
     public TypeB() {
         super();
@@ -28,4 +35,11 @@ public class TypeB extends Generic {
         this.naamB = naamA;
     }
 
+    public TypeA getTypeA() {
+        return typeA;
+    }
+
+    public void setTypeA(TypeA typeA) {
+        this.typeA = typeA;
+    }
 }
