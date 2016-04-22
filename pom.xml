@@ -11,11 +11,14 @@
 
     <modules>
         <module>bootstrap</module>
+        <module>cassandra</module>
         <module>CryptoTest</module>
         <module>cucumber</module>
         <module>docker</module>
         <module>dozer</module>
         <module>java8</module>
+        <module>jpa</module>
+        <module>jpa21</module>
         <module>json-tests</module>
         <!--<module>multipom</module>-->
         <!--<module>spring-batch</module>-->
@@ -23,6 +26,7 @@
         <module>testing</module>
         <module>testing-db</module>
         <module>wiremock</module>
+        <module>spring-cloud-config</module>
         <!--<module>xml</module>-->
     </modules>
 
